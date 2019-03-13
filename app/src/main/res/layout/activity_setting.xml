@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBg"
+    android:orientation="vertical">
+
+    <include layout="@layout/view_common_bar"/>
+
+    <!--清空缓存-->
+    <RelativeLayout
+        android:id="@+id/btn_clear"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@color/colorWhite"
+        android:padding="8dp"
+        android:layout_marginTop="20dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorBlack"
+            android:textSize="14sp"
+            android:layout_marginLeft="8dp"
+            android:layout_centerVertical="true"
+            android:text="清空缓存"/>
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:background="@mipmap/icon_chevron_right"/>
+    </RelativeLayout>
+
+    <!--反馈与建议-->
+    <RelativeLayout
+        android:id="@+id/btn_feedback"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@color/colorWhite"
+        android:padding="8dp"
+        android:layout_marginTop="0.5dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorBlack"
+            android:textSize="14sp"
+            android:layout_marginLeft="8dp"
+            android:layout_centerVertical="true"
+            android:text="反馈与建议"/>
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:background="@mipmap/icon_chevron_right"/>
+    </RelativeLayout>
+
+    <!--版本号-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@color/colorWhite"
+        android:padding="8dp"
+        android:layout_marginTop="12dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorBlack"
+            android:textSize="14sp"
+            android:layout_marginLeft="8dp"
+            android:layout_centerVertical="true"
+            android:text="版本号"/>
+        <TextView
+            android:id="@+id/tv_version"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorBlue"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="8dp"
+            android:textSize="13sp"
+            android:layout_centerVertical="true"
+            android:text="V1.0.0"/>
+    </RelativeLayout>
+
+    <!--注销登录-->
+    <RelativeLayout
+        android:id="@+id/btn_logout"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@color/colorWhite"
+        android:padding="8dp"
+        android:layout_marginTop="28dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorRed"
+            android:textSize="14sp"
+            android:layout_centerInParent="true"
+            android:layout_marginRight="12dp"
+            android:text="注销登录"/>
+    </RelativeLayout>
+
+</LinearLayout>

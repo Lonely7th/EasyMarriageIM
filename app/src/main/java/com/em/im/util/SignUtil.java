@@ -20,7 +20,7 @@ public class SignUtil {
         //添加时间戳
         String timeStamp = System.currentTimeMillis()+"";
         params.put("timeStamp",timeStamp);
-        params.put("token",(need_token?LoginUtil.getUserInfo().getUserToken():""));
+        params.put("token",(need_token?LoginUtil.getUserInfo().getToken():""));
         //添加签名
         String sign = sign(timeStamp, need_token);
         params.put("sign",sign);
@@ -34,7 +34,7 @@ public class SignUtil {
             sb.append(timeStamp);
             sb.append(secretKey);
             if(need_token){
-                sb.append(LoginUtil.getUserInfo().getUserToken());
+                sb.append(LoginUtil.getUserInfo().getToken());
             }
             return getAppM5(sb.toString());
         } catch (Exception e) {

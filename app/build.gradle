@@ -11,7 +11,7 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
-        ndk { abiFilters "armeabi", "armeabi-v7a", "arm64-v8a", "x86","arm64-v8a","x86_64" }
+        ndk { abiFilters "armeabi", "armeabi-v7a", "arm64-v8a", "x86", "arm64-v8a", "x86_64" }
     }
     buildTypes {
         release {
@@ -52,4 +52,6 @@ dependencies {
     implementation 'org.greenrobot:eventbus:3.0.0'
     //日志框架
     implementation 'com.orhanobut:logger:2.2.0'
+    //微信分享
+    implementation 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:+'
 }

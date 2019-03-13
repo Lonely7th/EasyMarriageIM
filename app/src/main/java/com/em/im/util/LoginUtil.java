@@ -2,9 +2,9 @@ package com.em.im.util;
 
 import android.content.SharedPreferences;
 
-import com.em.jigsaw.BaseApplication;
-import com.em.jigsaw.base.ContentKey;
-import com.em.jigsaw.bean.UserBean;
+import com.em.im.MyApplication;
+import com.em.im.base.ContentValue;
+import com.em.im.bean.UserBean;
 import com.google.gson.Gson;
 
 /**
@@ -19,10 +19,10 @@ public class LoginUtil {
      */
     public static void loginSuccess(String userInfo){
         //保存用户信息
-        SharedPreferences.Editor editor = BaseApplication.sf.edit();
+        SharedPreferences.Editor editor = MyApplication.sf.edit();
         //添加登录状态
-        editor.putBoolean(ContentKey.LOGIN_STATUS, true);
-        editor.putString(ContentKey.LOGIN_JSONSTR, userInfo);
+        editor.putBoolean(ContentValue.LOGIN_STATUS, true);
+        editor.putString(ContentValue.LOGIN_JSONSTR, userInfo);
         editor.apply();
     }
 
@@ -31,9 +31,9 @@ public class LoginUtil {
      */
     public static void exitLogin(){
         //清空登录状态
-        SharedPreferences.Editor editor = BaseApplication.sf.edit();
-        editor.putBoolean(ContentKey.LOGIN_STATUS, false);
-        editor.putString(ContentKey.LOGIN_JSONSTR,"");
+        SharedPreferences.Editor editor = MyApplication.sf.edit();
+        editor.putBoolean(ContentValue.LOGIN_STATUS, false);
+        editor.putString(ContentValue.LOGIN_JSONSTR,"");
         editor.apply();
     }
 
@@ -41,7 +41,7 @@ public class LoginUtil {
      * 判断登录状态
      */
     public static boolean isLogin() {
-        return BaseApplication.sf.getBoolean(ContentKey.LOGIN_STATUS, false);
+        return MyApplication.sf.getBoolean(ContentValue.LOGIN_STATUS, false);
     }
 
     /**
@@ -49,15 +49,15 @@ public class LoginUtil {
      */
     public static UserBean getUserInfo(){
         if(isLogin()){
-            return gson.fromJson(BaseApplication.sf.getString(ContentKey.LOGIN_JSONSTR,""),UserBean.class);
+            return gson.fromJson(MyApplication.sf.getString(ContentValue.LOGIN_JSONSTR,""),UserBean.class);
         }else{
             return new UserBean();
         }
     }
 
     public static void changeUserInfo(UserBean userBean){
-        SharedPreferences.Editor editor = BaseApplication.sf.edit();
-        editor.putString(ContentKey.LOGIN_JSONSTR, gson.toJson(userBean));
+        SharedPreferences.Editor editor = MyApplication.sf.edit();
+        editor.putString(ContentValue.LOGIN_JSONSTR, gson.toJson(userBean));
         editor.apply();
     }
 }
