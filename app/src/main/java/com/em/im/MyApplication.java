@@ -4,6 +4,11 @@ import android.app.Application;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
+import com.amap.api.location.AMapLocation;
+import com.amap.api.location.AMapLocationClient;
+import com.amap.api.location.AMapLocationClientOption;
+import com.amap.api.location.AMapLocationListener;
+import com.em.im.bean.AMapBean;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.cache.CacheEntity;
 import com.lzy.okgo.cache.CacheMode;
@@ -12,7 +17,6 @@ import com.lzy.okgo.cookie.store.DBCookieStore;
 import com.lzy.okgo.interceptor.HttpLoggingInterceptor;
 import com.lzy.okgo.model.HttpHeaders;
 import com.lzy.okgo.model.HttpParams;
-import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.Logger;
 
 import java.util.concurrent.TimeUnit;
@@ -27,18 +31,73 @@ import okhttp3.OkHttpClient;
  */
 public class MyApplication extends Application {
     public static SharedPreferences sf = null;
+    //声明AMapLocationClient类对象
+    public AMapLocationClient mLocationClient = null;
+    //声明定位回调监听器
+    public AMapLocationListener mLocationListener = new AMapLocationListener() {
+        @Override
+        public void onLocationChanged(AMapLocation amapLocation) {
+            if (amapLocation != null) {
+                if (amapLocation.getErrorCode() == 0) {
+                    AMapBean aMapBean = new AMapBean();
+                    aMapBean.setLatitude(amapLocation.getLatitude());//获取纬度
+                    aMapBean.setLongitude(amapLocation.getLongitude());//获取经度
+                    aMapBean.setCountry(amapLocation.getCountry());//国家信息
+                    aMapBean.setProvince(amapLocation.getProvince());//省信息
+                    aMapBean.setCity(amapLocation.getCity());//城市信息
+                    aMapBean.setDistrict(amapLocation.getDistrict());//城区信息
+                    aMapBean.setStreet(amapLocation.getStreet());//街道信息
+                    aMapBean.setStreetNum(amapLocation.getStreetNum());//街道门牌号信息
+                }else {
+                    //定位失败时，可通过ErrCode（错误码）信息来确定失败的原因，errInfo是错误信息，详见错误码表。
+                    Logger.e("location Error, ErrCode:" + amapLocation.getErrorCode() + ", errInfo:" + amapLocation.getErrorInfo());
+                }
+            }
+        }
+    };
+    //声明AMapLocationClientOption对象
+    public AMapLocationClientOption mLocationOption = null;
 
     @Override
     public void onCreate() {
         super.onCreate();
-        initOkGO();
         initSharedPreferences();
+        initOkGO();
+        initMap();
     }
 
+    /**
+     * 初始化地图组件
+     */
+    private void initMap() {
+        //初始化定位
+        mLocationClient = new AMapLocationClient(getApplicationContext());
+        //设置定位回调监听
+        mLocationClient.setLocationListener(mLocationListener);
+        //初始化AMapLocationClientOption对象
+        mLocationOption = new AMapLocationClientOption();
+        //设置定位模式为AMapLocationMode.Hight_Accuracy，高精度模式。
+        mLocationOption.setLocationMode(AMapLocationClientOption.AMapLocationMode.Hight_Accuracy);
+        //设置定位间隔,单位毫秒,默认为2000ms，最低1000ms。
+        mLocationOption.setInterval(60000);
+        //设置是否返回地址信息（默认返回地址信息）
+        mLocationOption.setNeedAddress(true);
+        //给定位客户端对象设置定位参数
+        mLocationClient.setLocationOption(mLocationOption);
+        //启动定位
+        mLocationClient.startLocation();
+    }
+
+    /**
+     * 初始化本地缓存
+     */
     private void initSharedPreferences() {
         sf = PreferenceManager.getDefaultSharedPreferences(this);
     }
 
+    /**
+     * 初始化网络请求组件
+     */
     private void initOkGO() {
         HttpHeaders headers = new HttpHeaders();
         headers.put("commonHeaderKey1", "commonHeaderValue1");

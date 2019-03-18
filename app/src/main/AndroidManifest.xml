@@ -23,7 +23,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".activity.SettingActivity"></activity>
+        <activity android:name=".activity.SettingActivity" />
         <activity android:name=".activity.ShowPicActivity" />
         <activity android:name=".activity.FeedbackActivity" />
         <activity android:name=".activity.LoginActivity" />
@@ -35,6 +35,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <service android:name="com.amap.api.location.APSService" />
     </application>
+
+    <meta-data
+        android:name="com.amap.api.v2.apikey"
+        android:value="a34e77348a3fa74450419ec23847da43" />
 
 </manifest>
