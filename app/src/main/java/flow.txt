@@ -1,0 +1,26 @@
+```flow
+st=>start: 启动应用
+cond_per_1=>condition: 是否打开
+定位权限?
+st->cond_per_1
+cond_per_2=>condition: 是否可以
+申请授权?
+opt_per=>operation: 申请授权
+opt_lat=>operation: 获取经纬度数据
+cond_per_1(yes)->opt_lat
+cond_per_1(no)->cond_per_2
+opt_per_setting=>operation: 提示用户去设置页
+面打开定位权限
+cond_per_2(no)->opt_per_setting
+cond_per_2(yes)->opt_per
+cond_per_cmp=>condition: 授权成功?
+opt_per->cond_per_cmp
+cond_per_cmp(yes)->opt_lat
+opt_api=>operation: 地理位置反编译
+获取位置信息
+opt_lat->opt_api
+opt_server=>operation: 提交位置信息到服务器
+opt_api->opt_server
+e=>end: 后续流程
+opt_server->e
+```
