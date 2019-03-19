@@ -1,26 +1,28 @@
 ```flow
 st=>start: 启动应用
-cond_per_1=>condition: 是否打开
-定位权限?
-st->cond_per_1
-cond_per_2=>condition: 是否可以
-申请授权?
-opt_per=>operation: 申请授权
-opt_lat=>operation: 获取经纬度数据
-cond_per_1(yes)->opt_lat
-cond_per_1(no)->cond_per_2
-opt_per_setting=>operation: 提示用户去设置页
-面打开定位权限
-cond_per_2(no)->opt_per_setting
-cond_per_2(yes)->opt_per
-cond_per_cmp=>condition: 授权成功?
-opt_per->cond_per_cmp
-cond_per_cmp(yes)->opt_lat
-opt_api=>operation: 地理位置反编译
-获取位置信息
-opt_lat->opt_api
-opt_server=>operation: 提交位置信息到服务器
-opt_api->opt_server
+opt_per=>operation: 申请相关权限
+opt_update=>operation: 请求版本信息
+和补丁信息
+cnd_update=>condition: 已经是最
+新版本？
+cnd_hotfix=>condition: 需要下载
+补丁？
+opt_update_dialog=>operation: 弹出更新提示
+opt_to_update=>operation: 下载新版
+本并更新
+opt_load_fix=>operation: 下载补丁并
+toast提示
+opt_init_web=>operation: 初始化WebView
+
+st->opt_per
+opt_per->opt_update
+opt_update->cnd_update
+cnd_update(yes)->cnd_hotfix
+cnd_update(no)->opt_update_dialog
+opt_update_dialog->opt_to_update
+opt_to_update->opt_per
+cnd_hotfix(yes)->opt_load_fix
+cnd_hotfix(no)->opt_init_web
+opt_load_fix->opt_init_web
 e=>end: 后续流程
-opt_server->e
 ```
