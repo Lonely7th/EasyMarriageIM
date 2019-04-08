@@ -9,6 +9,8 @@ import com.amap.api.location.AMapLocationClient;
 import com.amap.api.location.AMapLocationClientOption;
 import com.amap.api.location.AMapLocationListener;
 import com.em.im.bean.AMapBean;
+import com.em.im.util.AMapUtil;
+import com.google.gson.Gson;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.cache.CacheEntity;
 import com.lzy.okgo.cache.CacheMode;
@@ -30,6 +32,7 @@ import okhttp3.OkHttpClient;
  * Description ： .
  */
 public class MyApplication extends Application {
+    private Gson gson = new Gson();
     public static SharedPreferences sf = null;
     //声明AMapLocationClient类对象
     public AMapLocationClient mLocationClient = null;
@@ -48,6 +51,7 @@ public class MyApplication extends Application {
                     aMapBean.setDistrict(amapLocation.getDistrict());//城区信息
                     aMapBean.setStreet(amapLocation.getStreet());//街道信息
                     aMapBean.setStreetNum(amapLocation.getStreetNum());//街道门牌号信息
+                    AMapUtil.changeMapInfo(gson.toJson(aMapBean));
                 }else {
                     //定位失败时，可通过ErrCode（错误码）信息来确定失败的原因，errInfo是错误信息，详见错误码表。
                     Logger.e("location Error, ErrCode:" + amapLocation.getErrorCode() + ", errInfo:" + amapLocation.getErrorInfo());
@@ -79,7 +83,7 @@ public class MyApplication extends Application {
         //设置定位模式为AMapLocationMode.Hight_Accuracy，高精度模式。
         mLocationOption.setLocationMode(AMapLocationClientOption.AMapLocationMode.Hight_Accuracy);
         //设置定位间隔,单位毫秒,默认为2000ms，最低1000ms。
-        mLocationOption.setInterval(60000);
+        mLocationOption.setInterval(2000);
         //设置是否返回地址信息（默认返回地址信息）
         mLocationOption.setNeedAddress(true);
         //给定位客户端对象设置定位参数

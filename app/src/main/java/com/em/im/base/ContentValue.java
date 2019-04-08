@@ -15,6 +15,10 @@ public class ContentValue {
     /**
      * 用户信息相关
      */
-    public static String LOGIN_JSONSTR = "EQCHA_LOGIN_JSONSTR";
-    public static String LOGIN_STATUS = "EQCHA_LOGIN_STATUS";
+    public static String LOGIN_JSONSTR = "LOGIN_JSONSTR";
+    public static String LOGIN_STATUS = "LOGIN_STATUS";
+    /**
+     * 位置信息相关
+     */
+    public static String AMAP_JSONSTR = "AMAP_JSONSTR";
 }
