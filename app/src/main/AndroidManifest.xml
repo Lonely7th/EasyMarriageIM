@@ -15,6 +15,10 @@
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
 
+    <meta-data
+        android:name="com.amap.api.v2.apikey"
+        android:value="a34e77348a3fa74450419ec23847da43" />
+
     <application
         android:name=".MyApplication"
         android:icon="@mipmap/ic_launcher"
@@ -23,6 +27,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".activity.SearchActivity"></activity>
         <activity android:name=".activity.SettingActivity" />
         <activity android:name=".activity.ShowPicActivity" />
         <activity android:name=".activity.FeedbackActivity" />
@@ -38,9 +43,5 @@
 
         <service android:name="com.amap.api.location.APSService" />
     </application>
-
-    <meta-data
-        android:name="com.amap.api.v2.apikey"
-        android:value="a34e77348a3fa74450419ec23847da43" />
 
 </manifest>

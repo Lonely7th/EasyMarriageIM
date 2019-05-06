@@ -8,12 +8,16 @@ package com.em.im.bean;
 public class UserBean {
     private String UserNo;
     private String UserName;
-    private String Token = "";
-    private String PhoneNumber;
     private String UserHead = "";
-    private String City;
-    private String CreatTime;
+    private String UserPhone;
+    private String UserCity;
+
+    private String Token = "";
     private boolean isFollow;
+
+    private String WxUserId;
+
+    private String CreatTime;
 
     public String getUserNo() {
         return UserNo;
@@ -31,22 +35,6 @@ public class UserBean {
         UserName = userName;
     }
 
-    public String getToken() {
-        return Token;
-    }
-
-    public void setToken(String token) {
-        Token = token;
-    }
-
-    public String getPhoneNumber() {
-        return PhoneNumber;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        PhoneNumber = phoneNumber;
-    }
-
     public String getUserHead() {
         return UserHead;
     }
@@ -55,20 +43,28 @@ public class UserBean {
         UserHead = userHead;
     }
 
-    public String getCity() {
-        return City;
+    public String getUserPhone() {
+        return UserPhone;
     }
 
-    public void setCity(String city) {
-        City = city;
+    public void setUserPhone(String userPhone) {
+        UserPhone = userPhone;
     }
 
-    public String getCreatTime() {
-        return CreatTime;
+    public String getUserCity() {
+        return UserCity;
     }
 
-    public void setCreatTime(String creatTime) {
-        CreatTime = creatTime;
+    public void setUserCity(String userCity) {
+        UserCity = userCity;
+    }
+
+    public String getToken() {
+        return Token;
+    }
+
+    public void setToken(String token) {
+        Token = token;
     }
 
     public boolean isFollow() {
@@ -77,5 +73,21 @@ public class UserBean {
 
     public void setFollow(boolean follow) {
         isFollow = follow;
+    }
+
+    public String getWxUserId() {
+        return WxUserId;
+    }
+
+    public void setWxUserId(String wxUserId) {
+        WxUserId = wxUserId;
+    }
+
+    public String getCreatTime() {
+        return CreatTime;
+    }
+
+    public void setCreatTime(String creatTime) {
+        CreatTime = creatTime;
     }
 }
