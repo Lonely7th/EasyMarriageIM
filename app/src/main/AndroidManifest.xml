@@ -27,7 +27,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".activity.SearchActivity"></activity>
         <activity android:name=".activity.SettingActivity" />
         <activity android:name=".activity.ShowPicActivity" />
         <activity android:name=".activity.FeedbackActivity" />
